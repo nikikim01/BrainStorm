@@ -8,4 +8,4 @@ const photoSchema = new Schema({
 });
 
 // need to convert schema into a model with which we can work
-const Photo = mongoose.model("Photo", photoSchema);
+export const Photo = mongoose.model("Photo", photoSchema);
