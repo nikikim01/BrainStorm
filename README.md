@@ -10,23 +10,23 @@
 
 **Front End**
 
-- React
-- Relay
-- GraphQL
+- Redux with React to manage states
+- Relay for GraphQL data fetching
 
 **Backend**
 
 - Node.js
-- Apollo Server
-- MongoDB
+- (Apollo Server)[https://www.apollographql.com/docs/apollo-server/getting-started]
+- (Mongoose)[https://mongoosejs.com/docs/guide.html]
 - Hack using hhvm
 
 **GenAI**
 
 - PyTorch for automatic punny caption generation
 
-**Storage and Deployment**
+**Database, Storage, and Deployment**
 
+    - MongoDB
     - GCP
 
 ## Getting Started
@@ -76,3 +76,5 @@ cd ../frontend
 ## Testing
 
 `npm test`
+
+(jest and supertest reference)[https://medium.com/@csalazar94/javascript-testing-made-easy-a-step-by-step-guide-with-jest-and-supertest-8e2a35f13506]
