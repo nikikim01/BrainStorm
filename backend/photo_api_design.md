@@ -6,7 +6,19 @@
 - caption: String
 - generatedCaption: String
 
-## GraphQL Operations
+# GraphQL Operations
+
+## Queries
+
+### 1. Retrieve Photo by ID
+
+### 2. Retrieve All Photos
+
+### 3. Retrieve Photos by Caption (not an MVP)
+
+### 4. Retrieve Photos by Generated Caption (not an MVP)
+
+## Mutations
 
 ### 1. Create Photo
 
@@ -20,11 +32,3 @@
 ### 2. Update Photo
 
 ### 3. Delete Photo
-
-### 4. Retrieve Photo by ID
-
-### 5. Retrieve All Photos
-
-### 6. Retrieve Photos by Caption (not an MVP)
-
-### 7. Retrieve Photos by Generated Caption (not an MVP)
