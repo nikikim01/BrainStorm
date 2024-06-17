@@ -4,27 +4,25 @@ import mongoose from "mongoose";
 const uri = "mongodb://localhost:27017/punnyPix";
 
 const options = {
-  //   useNewUrlParse: true,
-  //   useUnifiedTopology: true,
   serverSelectionTimeoutMS: 5000,
   socketTimeoutMS: 45000,
-  autoIndex: true,
+  autoIndex: true, // TODO: set false during prod; when on, good for dev but bad for performance
 };
 
-export async function connect() {
+export const connect = async () => {
   try {
     await mongoose.connect(uri, options);
     console.log("Connected to MongoDB");
   } catch (err) {
     console.error(err);
   }
-}
+};
 
-export async function disconnect() {
+export const disconnect = async () => {
   try {
     await mongoose.disconnect();
     console.log("Disconnected from MongoDB");
   } catch (err) {
     console.error(err);
   }
-}
+};

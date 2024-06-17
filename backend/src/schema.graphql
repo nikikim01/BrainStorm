@@ -1,0 +1,22 @@
+type Photo {
+  id: ID!
+  url: String!
+  caption: String
+  generatedCaption: String
+}
+
+type Query {
+  photos: [Photo]
+  photo(url: String!): Photo
+}
+
+type Mutation {
+  addPhoto(url: String!, caption: String!): Photo
+  updatePhoto(
+    id: ID!
+    url: String
+    caption: String
+    generatedCaption: String
+  ): Photo
+  deletePhoto(url: String!): Photo
+}

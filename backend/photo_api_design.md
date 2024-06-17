@@ -10,9 +10,29 @@
 
 ## Queries
 
-### 1. Retrieve Photo by ID
+### 1. Retrieve All Photos
 
-### 2. Retrieve All Photos
+```
+query {
+            photos {
+                id
+                url
+                caption
+                generatedCaption
+            }}
+```
+
+### 2. Retrieve Photo by URL
+
+```
+query {
+            photo(url: "${testPhoto.url}") {
+                id
+                url
+                caption
+                generatedCaption
+            }}
+```
 
 ### 3. Retrieve Photos by Caption (not an MVP)
 
@@ -20,15 +40,16 @@
 
 ## Mutations
 
-### 1. Create Photo
+### 1. Add Photo
 
-- GraphQL Mutation
 - Request:
 
-```
+````
 
 ```
 
 ### 2. Update Photo
 
 ### 3. Delete Photo
+```
+````

@@ -13,6 +13,7 @@ async function startServer() {
 
   try {
     await dbConnect();
+    console.log("Successful connection!");
   } catch (err) {
     res.status(500).send(err);
   } finally {

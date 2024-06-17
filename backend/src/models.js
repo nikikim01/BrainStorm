@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+
+// Mongoose := MongoDB object modeling tool for async envs
+
 const { Schema } = mongoose;
 
 const photoSchema = new Schema({
