@@ -7,6 +7,12 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+const isValidUrl = (url) => {
+  const regex =
+    /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/\S*)?\.(jpg|jpeg|png|gif|svc|tiff|heif)$/;
+  return regex.test(url);
+};
+
 const typeDefs = readFileSync(join(__dirname, "schema.graphql"), "utf8");
 const resolvers = {
   Query: {
@@ -15,22 +21,75 @@ const resolvers = {
   },
   Mutation: {
     addPhoto: async (_, { url, caption }) => {
-      const photo = new Photo({ url, caption });
-      await photo.save();
-      return photo;
+      try {
+        if (!isValidUrl(url)) {
+          if (url === "") {
+            throw new Error("Missing URL.");
+          } else {
+            throw new Error("Invalid URL provided.");
+          }
+        }
+
+        const photo = new Photo({ url, caption });
+        await photo.save();
+        return photo;
+      } catch (err) {
+        return new Error("Error adding photo: " + err.message);
+      }
     },
     updatePhoto: async (_, { url, newUrl, caption, generatedCaption }) => {
-      const photo = await Photo.findOne({ url });
-      if (newUrl) photo.url = newUrl;
-      if (caption) photo.caption = caption;
-      if (generatedCaption) photo.generatedCaption = generatedCaption;
-      await photo.save();
-      return photo;
+      try {
+        if (newUrl && !isValidUrl(newUrl)) {
+          throw new Error("Invalid URL provided.");
+        }
+
+        const photo = await Photo.findOne({ url });
+
+        if (!photo) {
+          throw new Error("Photo not found.");
+        }
+
+        let sameInfo = false;
+
+        if (newUrl) {
+          sameInfo = sameInfo || newUrl === photo.url;
+          photo.url = newUrl;
+        }
+
+        if (caption) {
+          sameInfo = sameInfo || caption === photo.caption;
+          photo.caption = caption;
+        }
+
+        if (generatedCaption) {
+          sameInfo = sameInfo || generatedCaption === photo.generatedCaption;
+          photo.generatedCaption = generatedCaption;
+        }
+
+        if (sameInfo) {
+          throw new Error("Exact Match already exists in the database.");
+        }
+
+        await photo.save();
+        return photo;
+      } catch (err) {
+        return new Error("Error updating photo: " + err.message);
+      }
     },
     deletePhoto: async (_, { url }) => {
-      const photo = await Photo.findOne({ url });
-      await photo.remove();
-      return photo;
+      try {
+        if (!isValidUrl(url) || url === "") {
+          throw new Error("Invalid URL provided.");
+        }
+        const photo = await Photo.findOne({ url });
+        if (!photo) {
+          throw new Error("Photo not found.");
+        }
+        await photo.deleteOne();
+        return photo;
+      } catch (err) {
+        return new Error("Error deleting photo: " + err.message);
+      }
     },
   },
 };

@@ -48,11 +48,11 @@ const createTestServer = async () => {
                     - iii) missing caption
             - 2) Update Photo
                 - A) valid photo input
-                    - existing photo to update
-                    - non-existent photo to update
+                    - i) existing photo to update
+                    - ii) non-existent photo to update
                 - B) invalid photo input
                     - i) invalid url 
-                    - ii) missing caption aka no new information with which to update
+                    - ii) no new information with which to update
             - 3) Delete Photo
                 - A) by valid URL
                     - i) for existing photo
@@ -60,11 +60,32 @@ const createTestServer = async () => {
                 - B) by invalid URL
 
 */
+const testPhoto1 = {
+  url: "http://example.com/photo1.jpg",
+  caption: "pretty1",
+  generatedCaption: "extra pretty photo",
+};
+
+const testPhoto3 = {
+  url: "http://example.com/photo3.jpg",
+  caption: "pretty3",
+  generatedCaption: "very beautiful photo",
+};
 
 const testPhoto4 = {
   url: "http://example.com/photo4.jpg",
   caption: "uniquely beautiful",
   generatedCaption: "speechless and jawdropping",
+};
+
+const fauxPic = {
+  url: "funPic.com/photo.jpg",
+  caption: "that's cool",
+};
+
+const invalidURLphoto = {
+  url: "asdfawertghf",
+  caption: "that's uncool",
 };
 
 describe("GraphQL Queries", () => {
@@ -184,7 +205,7 @@ describe("GraphQL Queries", () => {
   });
 });
 
-describe("GraphQL Mutation: Add Photo", () => {
+describe("GraphQL Mutations", () => {
   var httpServer;
   var app;
 
@@ -203,85 +224,231 @@ describe("GraphQL Mutation: Add Photo", () => {
     httpServer.close();
     console.log("http server closed.");
   });
-  const fauxPic = {
-    url: "funPic.com/photo.jpg",
-    caption: "that's cool",
-  };
-  //   Test Partition M.1.A
-  it("should successfully add a valid photo", async () => {
-    const response = await app.post("/graphql").send({
-      query: `
+
+  describe("Add Photos", () => {
+    //   Test Partition M.1.A
+    it("should successfully add a valid photo", async () => {
+      const response = await app.post("/graphql").send({
+        query: `
             mutation ($url: String!, $caption: String) {
             addPhoto(url: $url, caption: $caption) {
                 url
                 caption
             }}
         `,
-      variables: fauxPic,
+        variables: fauxPic,
+      });
+
+      expect(response.body.errors).toBeUndefined();
+      expect(response.body.data.addPhoto).toEqual(fauxPic);
     });
 
-    expect(response.body.errors).toBeUndefined();
-    expect(response.body.data.addPhoto).toEqual(fauxPic);
-  });
+    //   Test Partition M.1.B.i - need to add empty url check
 
-  //   TODO: Test Partition M.1.B.i - need to add empty url check
-  it("should throw an error if there is a missing URL in the photo input", async () => {
-    const noURLphoto = {
-      url: "",
-      caption: "that's uncool",
-    };
-    const response = await app.post("/graphql").send({
-      query: `
+    it("should throw an error if there is a missing URL in the photo input", async () => {
+      const noURLphoto = {
+        url: "",
+        caption: "that's uncool",
+      };
+      const response = await app.post("/graphql").send({
+        query: `
             mutation ($url: String!, $caption: String) {
             addPhoto(url: $url, caption: $caption) {
                 url
                 caption
             }}
         `,
-      variables: noURLphoto,
+        variables: noURLphoto,
+      });
+
+      expect(response.body.errors).toBeDefined();
+      expect(response.body.errors[0].message).toMatch("Missing URL.");
     });
 
-    expect(response.body.errors).toBeDefined();
-  });
-
-  //  TODO:  Test Partition M.1.B.ii - need to add an invalid url check
-  it("should throw an error if there is an invalidly formatted URL in the photo input", async () => {
-    const invalidURLphoto = {
-      url: "asdfawertghf",
-      caption: "that's uncool",
-    };
-    const response = await app.post("/graphql").send({
-      query: `
+    //  Test Partition M.1.B.ii
+    it("should throw an error if there is an invalidly formatted URL in the photo input", async () => {
+      const response = await app.post("/graphql").send({
+        query: `
             mutation ($url: String!, $caption: String!) {
             addPhoto(url: $url, caption: $caption) {
                 url
                 caption
             }}
         `,
-      variables: invalidURLphoto,
+        variables: invalidURLphoto,
+      });
+
+      expect(response.body.errors).toBeDefined();
+      expect(response.body.errors[0].message).toMatch("Invalid URL provided.");
     });
 
-    expect(response.body.errors).toBeDefined();
-  });
-
-  //  Test Partition M.1.B.iii
-  it("should successfully add photo even with missing caption", async () => {
-    const noCaptionPhoto = {
-      url: "validurl.com/photo.jpg",
-      caption: "",
-    };
-    const response = await app.post("/graphql").send({
-      query: `
+    //  Test Partition M.1.B.iii
+    it("should successfully add photo even with missing caption", async () => {
+      const noCaptionPhoto = {
+        url: "validurl.com/photo.jpg",
+        caption: "",
+      };
+      const response = await app.post("/graphql").send({
+        query: `
             mutation ($url: String!, $caption: String) {
             addPhoto(url: $url, caption: $caption) {
                 url
                 caption
             }}
         `,
-      variables: noCaptionPhoto,
-    });
+        variables: noCaptionPhoto,
+      });
 
-    expect(response.body.errors).toBeUndefined();
-    expect(response.body.data.addPhoto).toEqual(noCaptionPhoto);
+      expect(response.body.errors).toBeUndefined();
+      expect(response.body.data.addPhoto).toEqual(noCaptionPhoto);
+    });
+  });
+
+  describe("Update Photos", () => {
+    // Test Partition M.2.A.i
+    it("should successfully update a valid photo that exists in the db", async () => {
+      const photoToUpdate = {
+        url: "http://example.com/photo1NEW.jpg",
+        caption: "i think still pretty",
+        generatedCaption: "extra pretty photo",
+      };
+      const response = await app.post("/graphql").send({
+        query: `
+            mutation ($url: String!, $newUrl: String, $caption: String) {
+            updatePhoto(url: $url, newUrl: $newUrl, caption: $caption) {
+                url
+                caption
+                generatedCaption
+            }}
+        `,
+        variables: {
+          url: testPhoto1.url,
+          newUrl: photoToUpdate.url,
+          caption: photoToUpdate.caption,
+        },
+      });
+
+      expect(response.body.errors).toBeUndefined();
+      expect(response.body.data.updatePhoto).toEqual(photoToUpdate);
+    });
+    // Test Partition M.2.A.ii
+    it("should throw an error when attempting to update a non-existent photo by URL", async () => {
+      const response = await app.post("/graphql").send({
+        query: `
+            mutation ($url: String!, $newUrl: String, $caption: String) {
+            updatePhoto(url: $url, newUrl: $newUrl, caption: $caption) {
+                url
+                caption
+                generatedCaption
+            }}
+        `,
+        variables: {
+          url: "https://doesnotexist.com/fakePic.jpg",
+          caption: "doesn't matter",
+        },
+      });
+
+      expect(response.body.errors).toBeDefined();
+      expect(response.body.errors[0].message).toMatch("Photo not found.");
+    });
+    // Test Partition M.2.B.i
+    it("should throw an error when attempting to update a photo with an invalid url", async () => {
+      const response = await app.post("/graphql").send({
+        query: `
+            mutation ($url: String!, $newUrl: String, $caption: String) {
+            updatePhoto(url: $url, newUrl: $newUrl, caption: $caption) {
+                url
+                caption
+                generatedCaption
+            }}
+        `,
+        variables: {
+          url: testPhoto1.url,
+          newUrl: "htt:/invalid.w/2n.dsa",
+          caption: "doesn't matter",
+        },
+      });
+
+      expect(response.body.errors).toBeDefined();
+      expect(response.body.errors[0].message).toMatch("Invalid URL provided.");
+    });
+    // Test Partition M.2.B.ii
+    it("should alert that provided information exactly matches what already exists", async () => {
+      const response = await app.post("/graphql").send({
+        query: `
+            mutation ($url: String!, $newUrl: String, $caption: String) {
+            updatePhoto(url: $url, newUrl: $newUrl, caption: $caption) {
+                url
+                caption
+                generatedCaption
+            }}
+        `,
+        variables: {
+          url: testPhoto1.url,
+          newUrl: testPhoto1.url,
+          caption: testPhoto1.caption,
+          generatedCaption: testPhoto1.generatedCaption,
+        },
+      });
+
+      expect(response.body.errors).toBeDefined();
+      expect(response.body.errors[0].message).toMatch(
+        "Exact Match already exists in the database."
+      );
+    });
+  });
+
+  describe("Delete Photos", () => {
+    // Test Partition M.3.A.i
+    it("should successfully delete a photo given an existing valid URL", async () => {
+      const response = await app.post("/graphql").send({
+        query: `
+        mutation ($url: String!){
+            deletePhoto(url: $url) {
+                url
+                caption
+                generatedCaption
+            }
+        }`,
+        variables: { url: testPhoto3.url },
+      });
+
+      expect(response.body.errors).toBeUndefined();
+
+      expect(response.body.data.deletePhoto).toEqual(testPhoto3);
+    });
+    // Test Partition M.3.A.ii
+    it("should throw an error when attempting to delete by URL a nonexistent photo", async () => {
+      const fakePhotoToDelete = { url: "notReal.com/photo.jpg" };
+      const response = await app.post("/graphql").send({
+        query: `
+        mutation ($url: String!) {
+            deletePhoto(url: $url) {
+                url
+                caption
+                generatedCaption
+        }}`,
+        variables: fakePhotoToDelete,
+      });
+
+      expect(response.body.errors).toBeDefined();
+      expect(response.body.errors[0].message).toMatch("Photo not found.");
+    });
+    // Test Partition M.3.B
+    it("should throw an error when attempting to delete by URL an invalid URL", async () => {
+      const response = await app.post("/graphql").send({
+        query: `
+        mutation ($url: String!) {
+            deletePhoto(url: $url) {
+                url
+                caption
+                generatedCaption
+        }}`,
+        variables: invalidURLphoto,
+      });
+
+      expect(response.body.errors).toBeDefined();
+      expect(response.body.errors[0].message).toMatch("Invalid URL provided.");
+    });
   });
 });
