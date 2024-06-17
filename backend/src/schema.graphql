@@ -11,12 +11,7 @@ type Query {
 }
 
 type Mutation {
-  addPhoto(url: String!, caption: String!): Photo
-  updatePhoto(
-    id: ID!
-    url: String
-    caption: String
-    generatedCaption: String
-  ): Photo
+  addPhoto(url: String!, caption: String): Photo
+  updatePhoto(url: String, caption: String, generatedCaption: String): Photo
   deletePhoto(url: String!): Photo
 }

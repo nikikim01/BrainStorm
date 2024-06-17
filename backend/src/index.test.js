@@ -39,14 +39,40 @@ const createTestServer = async () => {
                 - B) when DB is not empty
                     - i) when URL exists
                     - ii) when URL does not exist
+        - M) Mutations
+            - 1) Add Photo
+                - A) valid photo input
+                - B) invalid photo input
+                    - i) missing URL
+                    - ii) invalid URL format
+                    - iii) missing caption
+            - 2) Update Photo
+                - A) valid photo input
+                    - existing photo to update
+                    - non-existent photo to update
+                - B) invalid photo input
+                    - i) invalid url 
+                    - ii) missing caption aka no new information with which to update
+            - 3) Delete Photo
+                - A) by valid URL
+                    - i) for existing photo
+                    - ii) for non-existent photo
+                - B) by invalid URL
+
 */
+
+const testPhoto4 = {
+  url: "http://example.com/photo4.jpg",
+  caption: "uniquely beautiful",
+  generatedCaption: "speechless and jawdropping",
+};
 
 describe("GraphQL Queries", () => {
   var httpServer;
   var app;
 
   beforeEach(async () => {
-    console.log("Starting test setup...");
+    console.log("Starting GraphQL Queries test setup...");
     httpServer = await createTestServer();
     app = request(httpServer);
 
@@ -55,7 +81,7 @@ describe("GraphQL Queries", () => {
     await dbConnect();
   });
 
-  afterEach(async () => {
+  afterAll(async () => {
     await dbDisconnect();
     httpServer.close();
     console.log("http server closed.");
@@ -155,5 +181,107 @@ describe("GraphQL Queries", () => {
     });
     expect(response.body.errors).toBeUndefined();
     expect(response.body.data.photo).toBeNull();
+  });
+});
+
+describe("GraphQL Mutation: Add Photo", () => {
+  var httpServer;
+  var app;
+
+  beforeEach(async () => {
+    console.log("Starting GraphQL Add Photo Mutations Test setup...");
+    httpServer = await createTestServer();
+    app = request(httpServer);
+
+    await seedData();
+
+    await dbConnect();
+  });
+
+  afterAll(async () => {
+    await dbDisconnect();
+    httpServer.close();
+    console.log("http server closed.");
+  });
+  const fauxPic = {
+    url: "funPic.com/photo.jpg",
+    caption: "that's cool",
+  };
+  //   Test Partition M.1.A
+  it("should successfully add a valid photo", async () => {
+    const response = await app.post("/graphql").send({
+      query: `
+            mutation ($url: String!, $caption: String) {
+            addPhoto(url: $url, caption: $caption) {
+                url
+                caption
+            }}
+        `,
+      variables: fauxPic,
+    });
+
+    expect(response.body.errors).toBeUndefined();
+    expect(response.body.data.addPhoto).toEqual(fauxPic);
+  });
+
+  //   TODO: Test Partition M.1.B.i - need to add empty url check
+  it("should throw an error if there is a missing URL in the photo input", async () => {
+    const noURLphoto = {
+      url: "",
+      caption: "that's uncool",
+    };
+    const response = await app.post("/graphql").send({
+      query: `
+            mutation ($url: String!, $caption: String) {
+            addPhoto(url: $url, caption: $caption) {
+                url
+                caption
+            }}
+        `,
+      variables: noURLphoto,
+    });
+
+    expect(response.body.errors).toBeDefined();
+  });
+
+  //  TODO:  Test Partition M.1.B.ii - need to add an invalid url check
+  it("should throw an error if there is an invalidly formatted URL in the photo input", async () => {
+    const invalidURLphoto = {
+      url: "asdfawertghf",
+      caption: "that's uncool",
+    };
+    const response = await app.post("/graphql").send({
+      query: `
+            mutation ($url: String!, $caption: String!) {
+            addPhoto(url: $url, caption: $caption) {
+                url
+                caption
+            }}
+        `,
+      variables: invalidURLphoto,
+    });
+
+    expect(response.body.errors).toBeDefined();
+  });
+
+  //  Test Partition M.1.B.iii
+  it("should successfully add photo even with missing caption", async () => {
+    const noCaptionPhoto = {
+      url: "validurl.com/photo.jpg",
+      caption: "",
+    };
+    const response = await app.post("/graphql").send({
+      query: `
+            mutation ($url: String!, $caption: String) {
+            addPhoto(url: $url, caption: $caption) {
+                url
+                caption
+            }}
+        `,
+      variables: noCaptionPhoto,
+    });
+
+    expect(response.body.errors).toBeUndefined();
+    expect(response.body.data.addPhoto).toEqual(noCaptionPhoto);
   });
 });
