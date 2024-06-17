@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+### Production Dependencies
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+| **Dependency**   | **Use**                                              |
+| ---------------- | ---------------------------------------------------- |
+| bootstrap        | CSS Framework                                        |
+| graphql          | Query Language                                       |
+| immer            | Helper for working with immutable data               |
+| prop-types       | Declare types for props passed into React components |
+| react            | React library                                        |
+| react-dom        | React library for DOM rendering                      |
+| react-redux      | Connects React components to Redux                   |
+| react-router-dom | React library for routing                            |
+| react-toastify   | Display messages to the user                         |
+| redux            | Library for unidirectional data flows                |
+| redux-thunk      | Async redux library                                  |
+| reselect         | Memoize selectors for performance                    |
+| web-vitals       | Measure Web Vitals Metrics                           |
 
-## Available Scripts
+### Development Dependencies
 
-In the project directory, you can run:
+| **Dependency**                  | **Use**                                                          |
+| ------------------------------- | ---------------------------------------------------------------- |
+| @babel/core                     | Transpiles modern JavaScript so it runs cross-browser            |
+| @testing-library/react          | Test React components                                            |
+| babel-eslint                    | Lint modern JavaScript via ESLint                                |
+| babel-loader                    | Add Babel support to Webpack                                     |
+| babel-preset-react-app          | Babel preset for working in React. Used by create-react-app too. |
+| css-loader                      | Read CSS files via Webpack                                       |
+| cssnano                         | Minify CSS                                                       |
+| eslint                          | Lints JavaScript                                                 |
+| eslint-webpack-plugin           | Run ESLint via Webpack                                           |
+| eslint-plugin-import            | Advanced linting of ES6 imports                                  |
+| eslint-plugin-react             | Adds React-related rules to ESLint                               |
+| html-webpack-plugin             | Generate HTML file via webpack                                   |
+| http-server                     | Lightweight HTTP server to serve the production build locally    |
+| jest                            | Automated testing framework                                      |
+| mini-css-extract-plugin         | Extract imported CSS to a separate file via Webpack              |
+| npm-run-all                     | Display results of multiple commands on single command line      |
+| postcss                         | Post-process CSS                                                 |
+| postcss-loader                  | Post-process CSS via Webpack                                     |
+| react-test-renderer             | Render React components for testing                              |
+| redux-immutable-state-invariant | Warn when Redux state is mutated                                 |
+| rimraf                          | Delete files and folders                                         |
+| style-loader                    | Insert imported CSS into app via Webpack                         |
+| webpack                         | Bundler with plugin ecosystem and integrated dev server          |
+| webpack-bundle-analyzer         | Generate report of what's in the app's production bundle         |
+| webpack-cli                     | Run Webpack via the command line                                 |
+| webpack-dev-server              | Serve app via Webpack                                            |
 
-### `npm start`
+# Extensions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Relay VSCode extension
