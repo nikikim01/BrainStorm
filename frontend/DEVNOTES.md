@@ -65,7 +65,7 @@
       "version": "detect"
     }
   },
-  "root": true
+  "root": true // this line assures only this ESLint config applies to this project
 }
 
 ```

@@ -1,5 +1,5 @@
 {
-  "name": "PunnyPixBackend",
+  "name": "punny_pix_backend",
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
