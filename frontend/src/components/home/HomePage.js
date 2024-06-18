@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import "./HomePage.css";
 
 const HomePage = () => (
-  // bootstrap
-  <div className="HomePage-Container">
+  <div className="HomePage-container">
     <h1 className="HomePage-welcomeMessage">
       PunnyPix here to display your photo feed
     </h1>

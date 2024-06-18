@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./home/HomePage";
 import AboutPage from "./about/AboutPage";
 import NavBar from "./navbar/NavBar";
+import TicTacToe from "./ticTacToe/TicTacToePage";
+import HowToPlay from "./howToPlay/HowToPlayPage";
 import PageNotFound from "./PageNotFound";
 import "../utilities.css";
 
@@ -14,6 +16,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
+        <Route path="tictactoe" element={<TicTacToe />} />
+        <Route path="how-to-play" element={<HowToPlay />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>

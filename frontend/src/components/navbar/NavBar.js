@@ -54,15 +54,15 @@ const Navbar = () => {
               Games
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="/tic-tac-toe">
+              <a className="dropdown-item" href="/tictactoe">
                 Tic-Tac-Toe
               </a>
               <a className="dropdown-item" href="/game3">
                 another game
               </a>
               <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="/gameTutorials">
-                Game Tutorials
+              <a className="dropdown-item" href="/how-to-play">
+                Game Rules
               </a>
             </div>
           </li>
