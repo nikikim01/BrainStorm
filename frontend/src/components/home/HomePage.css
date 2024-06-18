@@ -1,0 +1,8 @@
+.HomePage-Container {
+  display: flex;
+  flex-direction: column;
+}
+
+.HomePage-welcomeMessage {
+  font-size: 3em;
+}
