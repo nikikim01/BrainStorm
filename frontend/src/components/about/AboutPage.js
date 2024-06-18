@@ -1,7 +1,8 @@
 import React from "react";
+import "./AboutPage.css";
 
 const AboutPage = () => (
-  <div>
+  <div className="AboutPage-container">
     <h2>About</h2>
     <p>
       This app uses React, Redux, React Router, and many other helpful
