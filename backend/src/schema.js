@@ -16,8 +16,16 @@ const isValidUrl = (url) => {
 const typeDefs = readFileSync(join(__dirname, "schema.graphql"), "utf8");
 const resolvers = {
   Query: {
-    photos: async () => await Photo.find(),
-    photo: async (_, { url }) => await Photo.findOne({ url }),
+    photos: async () => {
+      console.log("Querying all existing photos...");
+      await Photo.find();
+      console.log("Returning the queried photos now...");
+    },
+    photo: async (_, { url }) => {
+      console.log("Finding a photo...");
+      await Photo.findOne({ url });
+      console.log("Returning the queried photo now...");
+    },
   },
   Mutation: {
     addPhoto: async (_, { url, caption }) => {

@@ -16,6 +16,8 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true, // allows deep linking through react router and fallback to /
+    compress: true,
+    port: 3000,
   },
   plugins: [
     new webpack.DefinePlugin({

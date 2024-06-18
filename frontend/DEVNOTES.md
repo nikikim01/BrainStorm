@@ -88,11 +88,45 @@ npx install-peerdeps --dev eslint-config-airbnb
     - react-redux: official React bindings for redux to allow React components to interact with the Redux store
     - redux-thunk: middleware that allows the writing of action creators that return a fn instead of an action and enables handling of async actions in Redux
 
-## TailwindCSS Dependencies
+## Start Implementing Relay
 
-    - tailwindcss: a utility-first CSS framework
-    - postcss: transforms CSS with JS plugins and used by TailwindCSS to process CSS
-    - autoprefixer: a PostCSS plugin to parse CSS and add vendor prefixes to CSS rules; ensures CSS compatibility with different browsers
+- basic (installations)[https://relay.dev/docs/v11.0.0/getting-started/step-by-step-guide/#step-3-when-to-use-relay] after (setup)[https://relay.dev/docs/v11.0.0/getting-started/installation-and-setup/]
+- create (fetchGraphQL helper)[https://relay.dev/docs/v11.0.0/getting-started/step-by-step-guide/#22-a-fetchgraphql-helper]
+- `bash npm install -g get-graphql-schema`
+- `bash npx get-graphql-schema http://localhost:4000/graphql > schema.graphql`
+- needed to install Watchman: a Meta Inc. tool for watching changes in the filesystem
+- make sure schema.graphql encoding is UTF-8 not VSCode default of UTF-16
+
+## (Configure Relay Compiler)[https://relay.dev/docs/v11.0.0/getting-started/step-by-step-guide/#41-configure-relay-compiler]
+
+1.
+
+```json
+{
+  ...
+  "scripts": {
+    ...
+    "start": "npm run relay && {OG start script}>",
+    "build": "npm run relay && {OG build script}",
+    "relay": "relay-compiler --schema schema.graphql --src ./src/ --watch"
+    ...
+  },
+  ...
+}
+```
+
+## (Configure Relay Runtime)[https://relay.dev/docs/v11.0.0/getting-started/step-by-step-guide/#42-configure-relay-runtime]
+
+- a Relay `environment` encapsulates how we talk to our server (a Relay `Network`) with a cache of data retrieved from that server
+
+# Debugging PhotoFeedQuery
+
+uncommented the following bc restarting mongodb service fixed issue??
+
+1. needed to enable CORS on the backend server with `bash npm install cors`
+2. configure CORS in backend server
+
+- needed to run services as admin and manually start mongodb
 
 # Debugging and Sourcemaps
 
