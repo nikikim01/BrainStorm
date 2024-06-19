@@ -1,11 +1,16 @@
 .Photo-container {
+  border: 0.5em solid #000000;
+  padding: 1em;
+  margin: 1em;
 }
 
 .Photo-image {
+  width: 100%;
+  height: auto;
 }
 
-.Photo-caption {
-}
-
+.Photo-caption,
 .Photo-generatedCaption {
+  font-size: 1.5em;
+  color: #000000;
 }
