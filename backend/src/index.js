@@ -3,7 +3,7 @@ import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import express from "express";
-// import cors from "cors";
+import cors from "cors";
 import { schema } from "./schema.js";
 import {
   connect as dbConnect,
@@ -13,7 +13,7 @@ import {
 const startServer = async () => {
   const app = express();
   // using CORS middleware to address being blocked by CORS policy restrictions
-  // app.use(cors());
+  app.use(cors());
   const httpServer = http.createServer(app);
   const server = new ApolloServer({
     schema,
