@@ -13,11 +13,13 @@ const PhotoFeed = ({ preloadedQuery }) => {
 
   const data = usePreloadedQuery(PhotoFeedQuery, preloadedQuery);
   return (
-    <div className="PhotoFeed-container">
-      {Array.from(data.photos).map((photo) => (
-        <Photo key={photo.id} photo={photo} />
-      ))}
-    </div>
+    <>
+      <div className="PhotoFeed-container">
+        {Array.from(data.photos).map((photo) => (
+          <Photo key={photo.id} photo={photo} />
+        ))}
+      </div>
+    </>
   );
 };
 const PhotoFeedWrapper = () => {

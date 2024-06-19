@@ -6,7 +6,7 @@ import NavBar from "./navbar/NavBar";
 import TicTacToe from "./ticTacToe/TicTacToePage";
 import HowToPlay from "./howToPlay/HowToPlayPage";
 import { RelayEnvironmentProvider } from "react-relay/hooks";
-import PhotoFeedWrapper from "./photos/photoFeed/PhotoFeed";
+import PhotoFeedPage from "./photos/PhotoFeedPage";
 import PageNotFound from "./PageNotFound";
 import "../utilities.css";
 import RelayEnvironment from "../RelayEnvironment";
@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
-          <Route path="punnyPix" element={<PhotoFeedWrapper />} />
+          <Route path="punnyPix" element={<PhotoFeedPage />} />
           <Route path="tictactoe" element={<TicTacToe />} />
           <Route path="how-to-play" element={<HowToPlay />} />
           <Route path="*" element={<PageNotFound />} />

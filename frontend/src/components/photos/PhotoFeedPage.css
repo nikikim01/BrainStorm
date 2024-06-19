@@ -1,0 +1,13 @@
+.PhotoFeedPage-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.PhotoFeedPage-feed {
+}
+.box__dragndrop,
+.box__uploading,
+.box__success,
+.box__error {
+  display: none;
+}

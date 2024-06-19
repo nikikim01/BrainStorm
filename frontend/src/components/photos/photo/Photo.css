@@ -2,15 +2,25 @@
   border: 0.5em solid #000000;
   padding: 1em;
   margin: 1em;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .Photo-image {
-  width: 100%;
-  height: auto;
+  height: 100%;
+  width: auto;
+
+  margin-bottom: 1em;
+}
+.Photo-captionContainer {
+  widht: 100%;
+  text-align: center;
+  margin-bottom: 1em;
 }
 
 .Photo-caption,
 .Photo-generatedCaption {
-  font-size: 1.5em;
-  color: #000000;
+  margin: 0;
 }
