@@ -1,5 +1,6 @@
 import React from "react";
 import "./AboutPage.css";
+import "../../utilities.css";
 
 const AboutPage = () => (
   <div className="AboutPage-container">

@@ -11,11 +11,15 @@ const PhotoFeed = ({ preloadedQuery }) => {
   console.log("Photo Feed Component rendering...");
 
   const data = usePreloadedQuery(PhotoFeedQuery, preloadedQuery);
-  console.log("THE fetched data: ", data);
+  console.log("THE fetched data: ", data.photos);
   return (
     <div className="PhotoFeed-container">
       {data.photos.map((photo) => {
-        <Photo key={photo.id} Photo={photo} />;
+        <>
+          {console.log("the photo is ", photo.id)}
+          <h1>{photo.id}</h1>
+          <Photo key={photo.id} Photo={photo} />;
+        </>;
       })}
     </div>
   );

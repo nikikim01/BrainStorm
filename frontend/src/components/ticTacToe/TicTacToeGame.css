@@ -1,0 +1,178 @@
+* {
+  box-sizing: border-box;
+}
+
+/* General board styling */
+.TicTacToeBoard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #d7b893; /* Wood-like background color */
+  border: 5px solid #b47b4d; /* Darker wood border */
+  border-radius: 10px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.15);
+  margin: 20px 0;
+}
+
+/* Styling for each row in the board */
+.TicTacToeBoard-row {
+  display: flex;
+}
+
+/* Styling for each square in the board */
+.TicTacToeBoard-square {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  background-color: #f8e8d1; /* Light wood color */
+  border: 2px solid #b47b4d; /* Darker wood border */
+  font-size: 2em;
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.TicTacToeBoard-square:hover,
+.TicTacToeBoard-winningSquare:hover {
+  background-color: #f1d8b8; /* Slightly darker on hover */
+}
+
+.TicTacToeBoard-winningSquare {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  background-color: #b0fc38; /* Light green color */
+  border: 2px solid #426b29; /* Darker green border */
+  font-size: 2em;
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.TicTacToeBoard-status {
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.8;
+}
+
+.TicTacToeGame {
+  display: flex;
+  flex-direction: row;
+}
+
+.TicTacToeGame-info {
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+  margin-left: 20px;
+}
+
+.TicTacToeGame-currentMove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  margin: 10px 0;
+  background-color: #ffeb3b; /* Light yellow background */
+  color: #333; /* Dark text color */
+  font-size: 1.2em;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 2px solid #fbc02d; /* Border to match the background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* 3D effect with shadows */
+  transition: transform 0.3s; /* Smooth transition for hover effect */
+}
+
+.TicTacToeGame-currentMove:hover {
+  transform: translateY(-2px); /* Slightly lift up on hover */
+}
+
+.TicTacToeGame-moveButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7.5px 15px;
+  margin: 10px 0;
+  background-color: #e3f2fd; /* Light blue background */
+  color: #333;
+  font-size: 0.9em;
+  border-radius: 5px; /* Rounded corners */
+  border: 2px solid #90caf9; /* Border to match the background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* 3D effect with shadows */
+  transition: transform 0.3s; /* Smooth transition for hover effect */
+  cursor: pointer;
+}
+
+.TicTacToeGame-moveButton:hover {
+  transform: translateY(-2px); /* Slightly lift up on hover */
+}
+
+/* Responsive styles for .TicTacToeGame-currentMove */
+@media (max-width: 1200px) {
+  .TicTacToeGame-currentMove {
+    font-size: 1.1em;
+    padding: 8px 16px;
+  }
+
+  .TicTacToeGame-moveButton {
+    font-size: 0.825em;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .TicTacToeGame-currentMove {
+    font-size: 1em;
+    padding: 6px 12px;
+  }
+
+  .TicTacToeGame-moveButton {
+    font-size: 0.75em;
+    padding: 4.5px 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  .TicTacToeGame-currentMove {
+    font-size: 0.9em;
+    padding: 4px 8px;
+  }
+
+  .TicTacToeGame-moveButton {
+    font-size: 0.675em;
+    padding: 3px 6px;
+  }
+}
+
+.reverse {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
+
+.TicTacToeGame-moveListOrderButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.05em 0.5em;
+  margin: 0.2em 1.5em;
+  background-color: #e6e6fa; /* Light purple background */
+  color: #333;
+  font-size: 0.9em;
+  border-radius: 5px; /* Rounded corners */
+  border: 2px solid #301934; /* Border to match the background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* 3D effect with shadows */
+  transition: transform 0.3s; /* Smooth transition for hover effect */
+  cursor: pointer;
+}

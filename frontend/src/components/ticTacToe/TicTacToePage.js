@@ -1,9 +1,10 @@
 import React from "react";
 import "./TicTacToePage.css";
+import TicTacToeGame from "./TicTacToeGame";
 
 const TicTacToe = () => (
-  <div className="Cr">
-    <h1 className="TicTacToe-welcomeMessage">INSERT TICTACTOE GAME HERE</h1>
+  <div className="TicTacToe-container">
+    <TicTacToeGame />
   </div>
 );
 
