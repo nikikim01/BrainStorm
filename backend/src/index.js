@@ -3,7 +3,7 @@ import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import express from "express";
-import cors from "cor?s";
+// import cors from "cors";
 import { schema } from "./schema.js";
 import {
   connect as dbConnect,
