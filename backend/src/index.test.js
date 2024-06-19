@@ -142,7 +142,7 @@ describe("GraphQL Queries", () => {
     });
 
     expect(response.body.errors).toBeUndefined();
-    expect(response.body.data.photos.length).toBe(3);
+    expect(response.body.data.photos.length).toBe(6);
   });
 
   //   Test Partition Q.2.A

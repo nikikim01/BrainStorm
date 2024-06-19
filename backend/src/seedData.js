@@ -29,6 +29,24 @@ export const seedData = async () => {
         caption: "pretty3",
         generatedCaption: "very beautiful photo",
       },
+      {
+        url: "https://as1.ftcdn.net/v2/jpg/02/77/67/72/1000_F_277677253_JIUmLJH26OjuHyAqZG3NoFhZ8KAT7JSG.jpg",
+        caption: "Augmented Reality",
+        generatedCaption:
+          "Touching the Future: Where human ingenuity meets digital destiny!",
+      },
+      {
+        url: "https://as1.ftcdn.net/v2/jpg/03/20/56/92/1000_F_320569263_SsNTXDWR7NxyrZj6gwzAn8WZPsXVLryd.jpg",
+        caption: "Aurora Borealis",
+        generatedCaption:
+          "Polarizing Beauty: Aurora Borealis, lighting up the snow and our hearts!",
+      },
+      {
+        url: "https://as1.ftcdn.net/v2/jpg/04/29/72/06/1000_F_429720677_NwnOsNdhNQAWilfoeGXayPYG8NaGQ4Oe.jpg",
+        caption: "Beautiful Clouds in the Night Sky",
+        generatedCaption:
+          "Cloud nine meets lunar shine: a celestial serenade in the starry night.",
+      },
     ];
 
     // insert sample data
