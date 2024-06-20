@@ -10,3 +10,5 @@ const PhotoByUrlQuery = graphql`
     }
   }
 `;
+
+export default PhotoByUrlQuery;
