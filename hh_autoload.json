@@ -1,0 +1,5 @@
+{
+  "roots": ["BrainStorm/"],
+  "devRoots": ["BrainStorm/hackAR/tests/"],
+  "devFailureHandler": "Facebook\\AutoloadMap\\HHClientFallbackHandler"
+}

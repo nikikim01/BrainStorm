@@ -1,17 +1,24 @@
 {
-    "name": "nicole.kim/hackar",
-    "description": "HackAR image processing service",
-    "type": "project",
-    "autoload": {
-        "psr-4": {
-            "NicoleKim\\Hackar\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Nicole (Niki) Kim",
-            "email": "nicolegkim@gmail.com"
-        }
-    ],
-    "require": {}
+  "name": "nicole.kim/hackar",
+  "description": "HackAR image processing service",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "BrainStorm\\hackAR\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Nicole (Niki) Kim",
+      "email": "nicolegkim@gmail.com"
+    }
+  ],
+  "require": {
+    "hhvm/hsl": "^4.153",
+    "hhvm/hhvm-autoload": "^4.153"
+  },
+  "require-dev": {
+    "hhvm/hast": "^4.153",
+    "hhvm/hacktest": "^4.153"
+  }
 }

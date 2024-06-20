@@ -1,0 +1,20 @@
+{
+  "name": "brainstorm",
+  "version": "1.0.0",
+  "description": "-> the overarching webapp that is your digital sanctuary\r => Think of BrainStorm as your second brain--an innovative space designed to enhance your cognitive capabilities and keep your memories well-organized... a place where you can get to better know yourself and brainstorm who you best want to be",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "graphql": "^16.8.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.3"
+  }
+}

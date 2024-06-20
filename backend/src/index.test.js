@@ -12,7 +12,7 @@ import {
   disconnect as dbDisconnect,
 } from "./dbClient.js";
 
-const createTestServer = async () => {
+export const createTestServer = async () => {
   const app = express();
   const httpServer = http.createServer(app);
   const server = new ApolloServer({

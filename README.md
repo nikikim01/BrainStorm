@@ -63,6 +63,7 @@
 
     - MongoDB
     - GCP
+    - Docker with Volumes
 
 ## Getting Started
 
@@ -117,6 +118,17 @@ cd ../frontend
 - (supertest module)[https://www.npmjs.com/package/supertest]
 
   -
+
+# docker
+
+`docker-compose up --build` to build the Docker images and start the frontend, backend, hackAR services
+`docker-compose down` to stop them
+
+to run individually:
+
+1. `docker-compose up -d mongodb` to run mongodb in the background
+2. `docker-compose up --build backend` to build and start the backend service
+3. `docker-compose up --build frontend` to build and start the frontend service
 
 # NEED TO ADDRESS LATER
 

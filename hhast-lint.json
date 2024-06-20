@@ -1,0 +1,4 @@
+{
+  "roots": ["bin/", "hackAR/", "tests/"],
+  "builtinLinters": "all"
+}

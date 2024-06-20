@@ -1,0 +1,17 @@
+{
+  "name": "nicole.kim/learning",
+  "description": "practice hack project",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "NicoleKim\\Learning\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Nicole (Niki) Kim",
+      "email": "nicolegkim@gmail.com"
+    }
+  ],
+  "require": {}
+}
