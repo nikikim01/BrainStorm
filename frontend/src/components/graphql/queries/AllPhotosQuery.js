@@ -1,7 +1,7 @@
 import { graphql } from "react-relay";
 // Queries in graphql tags must start with the module name and end with 'Query'
-const PhotoFeedQuery = graphql`
-  query PhotoFeedQuery {
+const AllPhotosQuery = graphql`
+  query AllPhotosQuery {
     photos {
       id
       url
@@ -11,4 +11,4 @@ const PhotoFeedQuery = graphql`
   }
 `;
 
-export default PhotoFeedQuery;
+export default AllPhotosQuery;

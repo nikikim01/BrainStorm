@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8940a53493866f63347cd1cbce188833>>
+ * @generated SignedSource<<86d1c75019f3eb672cc46aee424f3da5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,12 +11,25 @@
 var node = (function(){
 var v0 = [
   {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "url"
+  }
+],
+v1 = [
+  {
     "alias": null,
-    "args": null,
+    "args": [
+      {
+        "kind": "Variable",
+        "name": "url",
+        "variableName": "url"
+      }
+    ],
     "concreteType": "Photo",
     "kind": "LinkedField",
-    "name": "photos",
-    "plural": true,
+    "name": "photo",
+    "plural": false,
     "selections": [
       {
         "alias": null,
@@ -52,32 +65,32 @@ var v0 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "PhotoFeedQuery",
-    "selections": (v0/*: any*/),
+    "name": "PhotoByUrlQuery",
+    "selections": (v1/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "PhotoFeedQuery",
-    "selections": (v0/*: any*/)
+    "name": "PhotoByUrlQuery",
+    "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "992463cae3f2a1e3f15a558636d08756",
+    "cacheID": "911521ad7134dc192d49e771cb45d076",
     "id": null,
     "metadata": {},
-    "name": "PhotoFeedQuery",
+    "name": "PhotoByUrlQuery",
     "operationKind": "query",
-    "text": "query PhotoFeedQuery {\n  photos {\n    id\n    url\n    caption\n    generatedCaption\n  }\n}\n"
+    "text": "query PhotoByUrlQuery(\n  $url: String!\n) {\n  photo(url: $url) {\n    id\n    url\n    caption\n    generatedCaption\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "f058d7e980a6bc9d5f67c1b8cac76734";
+node.hash = "a7136070ff330752561a5c8a830aeae2";
 
 module.exports = node;

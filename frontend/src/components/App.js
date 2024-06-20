@@ -1,13 +1,13 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import HomePage from "./home/HomePage";
-import AboutPage from "./about/AboutPage";
+import HomePage from "./pages/home/HomePage";
+import AboutPage from "./pages/about/AboutPage";
 import NavBar from "./navbar/NavBar";
-import TicTacToe from "./ticTacToe/TicTacToePage";
-import HowToPlay from "./howToPlay/HowToPlayPage";
+import TicTacToe from "./games/ticTacToe/TicTacToePage";
+import HowToPlay from "./pages/howToPlay/HowToPlayPage";
 import { RelayEnvironmentProvider } from "react-relay/hooks";
 import PhotoFeedPage from "./photos/PhotoFeedPage";
-import PageNotFound from "./PageNotFound";
+import PageNotFound from "./pages/PageNotFound";
 import "../utilities.css";
 import RelayEnvironment from "../RelayEnvironment";
 
