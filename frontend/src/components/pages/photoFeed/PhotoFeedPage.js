@@ -1,7 +1,7 @@
 import React from "react";
-import PhotoFeedWrapper from "./photoFeed/PhotoFeed";
+import PhotoFeedWrapper from "../../punnyPix/photos/photoFeedWrapper/PhotoFeedWrapper";
 import "./PhotoFeedPage.css";
-import "../../utilities.css";
+import "../../../utilities.css";
 
 const PhotoFeedPage = () => {
   return (

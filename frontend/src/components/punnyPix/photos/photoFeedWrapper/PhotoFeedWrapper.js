@@ -1,10 +1,10 @@
 import React from "react";
-import AllPhotosQuery from "../../graphql/queries/AllPhotosQuery";
-import RelayEnvironment from "../../../RelayEnvironment";
+import AllPhotosQuery from "../../../graphql/queries/AllPhotosQuery";
+import RelayEnvironment from "../../../../RelayEnvironment";
 import { loadQuery, usePreloadedQuery } from "react-relay/hooks";
 import Photo from "../photo/Photo";
-import "./PhotoFeed.css";
-import "../../../utilities.css";
+import "./PhotoFeedWrapper.css";
+import "../../../../utilities.css";
 
 const preloadedQuery = loadQuery(RelayEnvironment, AllPhotosQuery, {});
 

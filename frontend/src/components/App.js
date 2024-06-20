@@ -6,7 +6,7 @@ import NavBar from "./navbar/NavBar";
 import TicTacToe from "./games/ticTacToe/TicTacToePage";
 import HowToPlay from "./pages/howToPlay/HowToPlayPage";
 import { RelayEnvironmentProvider } from "react-relay/hooks";
-import PhotoFeedPage from "./photos/PhotoFeedPage";
+import PhotoFeedPage from "./pages/photoFeed/PhotoFeedPage";
 import PageNotFound from "./pages/PageNotFound";
 import "../utilities.css";
 import RelayEnvironment from "../RelayEnvironment";
