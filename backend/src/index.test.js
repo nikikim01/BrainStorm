@@ -5,12 +5,13 @@ import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import express from "express";
-import { schema } from "./typeDefs.js";
 import { seedData } from "./seedData.js";
-import {
-  connect as dbConnect,
-  disconnect as dbDisconnect,
-} from "./dbClient.js";
+import { dbConnect, dbDisconnect } from "./dbClient.js";
+import { typeDefs } from "./typeDefs.js";
+import resolvers from "./resolvers.js";
+import { makeExecutableSchema } from "@graphql-tools/schema";
+
+const schema = makeExecutableSchema({ typeDefs, resolvers });
 
 export const createTestServer = async () => {
   const app = express();
@@ -124,6 +125,7 @@ describe("GraphQL Queries", () => {
     });
 
     expect(response.body.errors).toBeUndefined();
+    console.log("CHECK HERE ", response.body.data);
     expect(response.body.data.photos.length).toBe(0);
   });
 

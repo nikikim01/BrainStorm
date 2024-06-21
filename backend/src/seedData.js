@@ -1,8 +1,5 @@
 import { Photo } from "./models.js";
-import {
-  connect as dbConnect,
-  disconnect as dbDisconnect,
-} from "./dbClient.js";
+import { dbConnect, dbDisconnect } from "./dbClient.js";
 
 export const seedData = async () => {
   try {
