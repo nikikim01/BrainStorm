@@ -10,22 +10,37 @@ import PhotoFeedPage from "./pages/photoFeed/PhotoFeedPage";
 import PageNotFound from "./pages/PageNotFound";
 import "../utilities.css";
 import RelayEnvironment from "../RelayEnvironment";
+import { Hearts } from "react-loader-spinner";
 
 function App() {
   return (
     <RelayEnvironmentProvider environment={RelayEnvironment}>
-      <div className="App">
-        <NavBar />
+      <React.Suspense
+        fallback={
+          <Hearts
+            height="80"
+            width="80"
+            color="#00bfff"
+            ariaLabel="hearts-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+        }
+      >
+        <div className="App">
+          <NavBar />
 
-        <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="punnyPix" element={<PhotoFeedPage />} />
-          <Route path="tictactoe" element={<TicTacToe />} />
-          <Route path="how-to-play" element={<HowToPlay />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </div>
+          <Routes>
+            <Route exact path="/" element={<HomePage />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="punnyPix" element={<PhotoFeedPage />} />
+            <Route path="tictactoe" element={<TicTacToe />} />
+            <Route path="how-to-play" element={<HowToPlay />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </div>
+      </React.Suspense>
     </RelayEnvironmentProvider>
   );
 }

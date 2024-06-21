@@ -20,6 +20,7 @@
     "node": "^22.3.0",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
+    "react-loader-spinner": "^6.1.6",
     "react-redux": "^9.1.2",
     "react-relay": "^17.0.0",
     "react-router-dom": "^6.23.1",
