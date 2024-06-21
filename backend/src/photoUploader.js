@@ -1,6 +1,6 @@
-import { photoBucket } from "./gcsConfig";
-
+import { photoBucket, photoBucketName } from "./gcsConfig.js";
 import path from "path";
+// import sharp from "sharp";
 
 export const uploadFile = async (filePath) => {
   await photoBucket.upload(filePath, {
@@ -13,18 +13,4 @@ export const uploadFile = async (filePath) => {
   )}`;
 
   return publicUrl;
-};
-
-export const generateSignedUrl = async (fileName) => {
-  const options = {
-    version: "v4", // latest signed URL version for enhanced security
-    action: "read",
-    expires: Date.now() + 15 * 60 * 1000, // 15 min
-  };
-  const [url] = await photoBucket.file(fileName).getSignedUrl(options);
-  return null;
-};
-
-export const makePhotoFilePrivate = async (filenName) => {
-  await photoBucket.file(filenName).makePrivate();
 };

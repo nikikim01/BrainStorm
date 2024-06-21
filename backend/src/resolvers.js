@@ -1,11 +1,4 @@
-import { join } from "node:path";
-import { makeExecutableSchema } from "@graphql-tools/schema";
-import { readFileSync } from "node:fs";
 import { Photo } from "./models.js";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const isValidUrl = (url) => {
   const regex =
@@ -13,7 +6,6 @@ const isValidUrl = (url) => {
   return regex.test(url);
 };
 
-const typeDefs = readFileSync(join(__dirname, "schema.graphql"), "utf8");
 const resolvers = {
   Query: {
     photos: async () => await Photo.find(),
@@ -82,11 +74,11 @@ const resolvers = {
         if (!isValidUrl(url) || url === "") {
           throw new Error("Invalid URL provided.");
         }
-        const photo = await Photo.findOne({ url });
+        const photo = await Photo.findOneAndDelete({ url });
         if (!photo) {
           throw new Error("Photo not found.");
         }
-        await photo.deleteOne();
+        // await photo.deleteOne();
         return photo;
       } catch (err) {
         return new Error("Error deleting photo: " + err.message);
@@ -95,4 +87,4 @@ const resolvers = {
   },
 };
 
-export const schema = makeExecutableSchema({ typeDefs, resolvers });
+export default resolvers;

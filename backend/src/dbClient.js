@@ -9,7 +9,7 @@ const options = {
   autoIndex: true, // TODO: set false during prod; when on, good for dev but bad for performance
 };
 
-export const connect = async () => {
+export const dbConnect = async () => {
   try {
     await mongoose.connect(uri, options);
     console.log("Connected to MongoDB");
@@ -18,7 +18,7 @@ export const connect = async () => {
   }
 };
 
-export const disconnect = async () => {
+export const dbDisconnect = async () => {
   try {
     await mongoose.disconnect();
     console.log("Disconnected from MongoDB");

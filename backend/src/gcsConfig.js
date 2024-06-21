@@ -1,6 +1,10 @@
 import path from "path";
 import dotenv from "dotenv";
 import { Storage } from "@google-cloud/storage";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 dotenv.config({ path: path.resolve(__dirname, "../../env") });
 
