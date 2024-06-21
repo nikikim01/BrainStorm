@@ -1,24 +1,18 @@
+import { photoBucket } from "./gcsConfig";
+
 import path from "path";
-import dotenv from "dotenv";
-import { Storage } from "@google-cloud/storage";
 
-dotenv.config({ path: path.resolve(__dirname, "../../../../../env") });
-
-const photoStorage = new Storage({
-  keyFilename: process.env.GOOGLE_APP_CREDENTIALS,
-});
-const photoBucketName = "punny_pix";
-const photoBucket = photoStorage.bucket(photoBucketName);
-
-export const uploadPhotoFile = async (filePath) => {
+export const uploadFile = async (filePath) => {
   await photoBucket.upload(filePath, {
     destination: path.basename(filePath),
     public: true,
     metadata: { cacheControl: "no-cache" },
   });
-  return `https://storage.googleapis.com/${photoBucketName}/${path.basename(
+  const publicUrl = `https://storage.googleapis.com/${photoBucketName}/${path.basename(
     filePath
   )}`;
+
+  return publicUrl;
 };
 
 export const generateSignedUrl = async (fileName) => {
